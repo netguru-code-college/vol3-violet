@@ -25,9 +25,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm password" %>
   </div>
 
+  <div id='target'>
+  </div>
+
   <div class="field">
     <%= f.label :avatar do %>
-      <%= f.file_field :avatar %>
+      <%= f.file_field :avatar, class: 'avatar-preview' %>
       <%= f.hidden_field :avatar_cache %>
     <% end %>
   </div>
