@@ -1,0 +1,27 @@
+<h1 align="center">Welcome to your profile page, <%= @user.username %>!</h1>
+
+<div class="row">
+  <div class="col-md-4 center">
+    <%= image_tag(@user.avatar.url) if @user.avatar.nil? %>
+  </div>
+<div>
+
+<h4 align="center">
+  Username: <%= @user.username %>
+</h4>
+
+<h4 align="center">
+  Email: <%= @user.email %>
+</h4>
+
+<h4 align="center">
+  Belongs to <%= @user.groups.count %> groups
+</h4>
+
+<h4 align="center">
+  Has <%= @user.bills_as_payer %> bills as payer
+</h4>
+
+<h4 align="center">
+  Has <%= @user.bills_as_borrower %> bills as borrower
+</h4>
