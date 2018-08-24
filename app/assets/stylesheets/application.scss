@@ -26,3 +26,15 @@
 .navbar a {
   color: #ffffff;
 }
+
+.jumbotron {
+  background-image: asset-url("park_guell.jpg");
+  background-size: cover;
+  height: 700px;
+}
+
+.log-in-form {
+  background-color: #ffffff;
+  opacity: 0.8;
+  padding: 20px;
+}
