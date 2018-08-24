@@ -28,15 +28,17 @@
   font-weight: bold;
   font-size: 1.5em;
   letter-spacing: 5px;
+  transition: color 0.5s;
 }
 
 .navbar-brand:hover {
-color: #1eb28a;
+  color: #1eb28a;
 }
 
 .navbar-nav > li > a {
   color: white;
   padding: 15px;
+  transition: color 0.5s;
 }
 
 .navbar-nav > li > a:hover {
