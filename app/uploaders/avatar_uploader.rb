@@ -10,7 +10,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # validate extensions of avatars
   def extension_whitelist
-    %w(jpg jpeg gif png)
+    %w[jpg jpeg gif png]
   end
 
   # validate size of avatar
