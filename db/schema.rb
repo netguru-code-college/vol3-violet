@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_08_24_102124) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +24,21 @@ ActiveRecord::Schema.define(version: 2018_08_24_102124) do
     t.index ["user_id"], name: "index_bills_on_user_id"
   end
 
+  create_table "debts", force: :cascade do |t|
+    t.bigint "bill_id"
+    t.bigint "user_id"
+    t.decimal "amount", precision: 8, scale: 2, default: "0.0"
+    t.boolean "status"
+    t.index ["bill_id"], name: "index_debts_on_bill_id"
+    t.index ["user_id"], name: "index_debts_on_user_id"
+  end
+
   create_table "group_models", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
+  
   create_table "group_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
@@ -58,4 +69,7 @@ ActiveRecord::Schema.define(version: 2018_08_24_102124) do
   end
 
   add_foreign_key "bills", "users"
+  add_foreign_key "debts", "bills"
+  add_foreign_key "debts", "users"
+
 end
