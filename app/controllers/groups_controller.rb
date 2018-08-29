@@ -11,7 +11,9 @@ class GroupsController < ApplicationController
     @group = Group.new
   end
 
-  def edit; end
+  def edit
+    set_group
+  end
 
   def create
     @group = Group.new(group_params.merge(creator_id: current_user.id))
@@ -25,7 +27,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(group_params) && can?(:destroy, Group)
+    if @group.update(group_params) && can?(:destroy, @group)
       redirect_to @group, notice: 'Group was successfully updated.'
     else
       render :edit, alert: 'Couldn\'t not update group!'
@@ -33,7 +35,7 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    if can?(:destroy, Group)
+    if can?(:destroy, @group)
       @group.destroy
       redirect_to groups_path, notice: 'Group was successfully deleted.'
     else

@@ -17,8 +17,8 @@
     </div>
   </div>
 
-  <div class="row">
-    <% group.bills.each do |bill| %>
+  <% group.bills.each do |bill| %>
+    <div class="row">
       <div class="col-md-3">
         <p><%= bill.title %></p>
       </div>
@@ -30,10 +30,14 @@
       </div>
       <div class="col-md-3">
         <ul class="not-decorated-list">
-          <li><%= link_to 'Edit', edit_group_bill_path(bill) %></li>
-          <li><%= link_to 'Delete', group_bill_path(bill), method: :delete %></li>
+          <% if can? :edit, bill %>
+            <li><%= link_to 'Edit', edit_group_bill_path(group, bill) %></li>
+          <% end %>
+          <% if can? :delete, bill %>
+            <li><%= link_to 'Delete', group_bill_path(group, bill), method: :delete %></li>
+          <% end %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
   <%= link_to 'Create new bill', new_group_bill_path(group) %>
 </div>

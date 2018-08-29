@@ -15,7 +15,8 @@
     <%= group_form.text_field :name, placeholder: "Name" %><br><br>
     <%= group_form.label ("Invite friends: ") %>
     <%= email_field(:user, :address) %>
-    <br>
-    <%= group_form.submit "Submit", class: "btn btn-outline-success float-left" %>
+    <br><br>
+    <%= group_form.submit "Submit", class: "btn btn-outline-success" %>
+    <%= link_to 'Cancel', groups_path, class: "btn btn-outline-danger" %>
   <% end %>
 </div>

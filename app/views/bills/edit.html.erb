@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Edit the bill</h1>
+  <%= form_for @bill, url: group_bill_path do |f| %>
+    <div class="row form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :title %>
+      </div>
+      <div class="col-md-10">
+        <%= f.text_field :title, autofocus: true, placeholder: @bill.title %>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="control-label col-md-2">
+        <%= f.label :amount %>
+      </div>
+      <div class="col-md-10">
+        <%= f.text_field :amount, placeholder: @bill.amount %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.submit 'Save', class: "btn btn-outline-success"%>
+        <%= link_to 'Cancel', groups_path, class: "btn btn-outline-danger" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

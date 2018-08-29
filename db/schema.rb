@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_172923) do
+ActiveRecord::Schema.define(version: 2018_08_29_095040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2018_08_28_172923) do
     t.string "split_type"
     t.bigint "group_id"
     t.string "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.index ["group_id"], name: "index_bills_on_group_id"
     t.index ["payer_id"], name: "index_bills_on_payer_id"
   end
@@ -63,8 +65,6 @@ ActiveRecord::Schema.define(version: 2018_08_28_172923) do
     t.string "avatar"
     t.boolean "admin", default: false, null: false
     t.boolean "blocked", default: false
-    t.string "provider"
-    t.string "uid"
     t.string "invitation_token"
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"

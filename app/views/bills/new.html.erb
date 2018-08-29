@@ -1,5 +1,4 @@
-<%= form_for @bill, url: group_bills_path do |form| %>
-  <%= form.text_field :amount  %>
-
-  <%= form.submit %>
-<% end %>
+<div class="container">
+  <h1>Create a new bill</h1>
+  <%= render 'form', bill: @bill %>
+</div>

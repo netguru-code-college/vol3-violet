@@ -2,24 +2,53 @@
 <div>
   <div class="container">
     <h1 class="display-4"><%= @group.name %><span class="badge badge-dark"></span></h1>
-    <thead>
-      <tr>
-        <th>Bill's name</th>
-        <th>Amount</th>
-        <th>Created on</th>
-        <th>Paid by</th>
-        <th colspan="4"></th>
-      </tr>
-    </thead>
-    <br>
-    <br>
-    <%= link_to 'Back', groups_path, class: "btn btn-outline-secondary" %>
+    <h2>Bills</h2>
+    <div class="row">
+      <div class="col-md-3">
+        <p><strong>Title</strong></p>
+      </div>
+      <div class="col-md-2">
+        <p><strong>Amount</strong></p>
+      </div>
+      <div class="col-md-2">
+        <p><strong>Type</strong></p>
+      </div>
+      <div class="col-md-2">
+        <p><strong>Created on</strong></p>
+      </div>
+      <div class="col-md-3">
+        <p><strong>Actions</strong></p>
+      </div>
+    </div>
+
+      <% @group.bills.each do |bill| %>
+        <div class="row">
+          <div class="col-md-3">
+            <p><%= bill.title %></p>
+          </div>
+          <div class="col-md-2">
+            <p><%= number_to_currency(bill.amount) %></p>
+          </div>
+          <div class="col-md-2">
+            <p><%= bill.split_type %></p>
+          </div>
+          <div class="col-md-2">
+            <p><%= bill.created_at.strftime("%m/%d/%Y") %></p>
+          </div>
+          <div class="col-md-3">
+            <ul class="not-decorated-list">
+              <li><%= link_to 'Edit', edit_group_bill_path(bill) %></li>
+              <li><%= link_to 'Delete', group_bill_path(bill), method: :delete %></li>
+          </div>
+        </div>
+      <% end %>
+
+    <%= link_to 'Back to groups listing', groups_path, class: "btn btn-outline-secondary" %>
+    <%= link_to 'Back to your profile', user_path(current_user), class: "btn btn-outline-secondary" %>
 
     <!-- get rid of this code! -->
-    <% if current_user ==  @group.creator || current_user.admin? %>
       <%= link_to 'Edit', edit_group_path(@group), class: "btn btn-outline-success"  %>
       <%= link_to 'Delete', @group, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger"%>
-    <% end %>
-    <%= link_to 'New bill', new_group_bill_path(@group), class: "btn btn-outline-secondary" %>
+    <%= link_to 'Create new bill', new_group_bill_path(@group), class: "btn btn-outline-secondary" %>
   </div>
 </div>

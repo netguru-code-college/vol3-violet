@@ -20,6 +20,7 @@
             <p>Blocked</p>
           </div>
           <div class="col-md-3">
+            <% if current_user.admin? %>
             <%= link_to 'Unban', ban_path(user),
                 controller: :users_controller, action: :update, method: :put,
                 data: {confirm: "You sure?"}, role: 'button',
@@ -27,17 +28,22 @@
             <%= link_to 'Delete', user_path(id: user.id), method: :delete,
                 data: {confirm: "You sure?"}, role: 'button',
                 class: 'btn btn-danger ml-2r' %>
+            <% end %>
+            <%= link_to 'Show profile', user_path(id: user.id), class: 'btn btn-info ml-2r' %>
           </div>
         <% else %>
           <div class="col-md-2">
             <p></p>
           </div>
           <div class="col-md-3">
+            <% if current_user.admin? %>
             <%= link_to 'Ban', ban_path(user), data: {confirm: "You sure?"},
                 role: 'button', class: 'btn btn-warning ml-2r' %>
             <%= link_to 'Delete', user_path(id: user.id), method: :delete,
                 data: {confirm: "You sure?"}, role: 'button',
                 class: 'btn btn-danger ml-2r' %>
+            <% end %>
+            <%= link_to 'Show profile', user_path(id: user.id), class: 'btn btn-info ml-2r' %>
           </div>
         <% end %>
       </div>

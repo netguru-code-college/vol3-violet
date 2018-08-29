@@ -19,10 +19,10 @@
       </div>
     </div>
 
-    <div class="row">
-      <% @user.groups.each do |group| %>
+    <% @user.groups.each do |group| %>
+      <div class="row">
         <div class="col-md-3">
-          <p><%= group.name %></p>
+          <p><%= link_to group.name, group_path(group) %></p>
         </div>
         <div class="col-md-3">
           <p><%= group.created_at.strftime("%m/%d/%Y") %></p>
@@ -36,13 +36,17 @@
         </div>
         <div class="col-md-3">
           <ul class="not-decorated-list">
-            <li><%= link_to 'Edit', group_path(group) %></li>
+            <% if can? :edit, group %>
+              <li><%= link_to 'Edit', edit_group_path(group) %></li>
+            <% end %>
+            <% if can? :delete, group %>
             <li><%= link_to 'Delete', group_path(group), method: :delete %></li>
+            <% end %>
             <li><%= link_to 'Show bills', group_bills_ajax_path(group.id), remote: true %></li>
           </ul>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
     <%= link_to "Create new group", new_group_path %>
   </div>
 </div>

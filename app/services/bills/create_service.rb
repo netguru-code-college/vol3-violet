@@ -4,6 +4,7 @@ module Bills
       @amount = params[:bill][:amount].to_f.round(2)
       @group_id = params[:group_id]
       @payer_id = payer_id
+      @title = params[:bill][:title]
       @borrowers = Group.find(group_id).users.where.not(id: @payer_id)
       @split_type = params.fetch(:split_type, 'equal')
     end
@@ -15,7 +16,7 @@ module Bills
 
     private
 
-    attr_reader :amount, :borrowers, :group_id, :payer_id, :split_type
+    attr_reader :amount, :borrowers, :group_id, :payer_id, :split_type, :title
 
     def bill
       @bill ||= Bill.new(
@@ -23,7 +24,8 @@ module Bills
         borrowers: borrowers,
         group_id: group_id,
         payer_id: payer_id,
-        split_type: split_type
+        split_type: split_type,
+        title: title
       )
     end
 
